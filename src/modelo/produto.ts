@@ -1,5 +1,5 @@
 export default class Produto {
-    public nome!: string
+    private nome!: string
     private valor!: number
     private genero!: string
 
@@ -9,8 +9,12 @@ export default class Produto {
         this.genero = genero;
     }
 
+    public get getNome(): string{
+        return this.nome;
+    }
+
     public get getValor(): number {
-        return this.valor
+        return this.valor;
     }
 
     public get getGenero(): string{

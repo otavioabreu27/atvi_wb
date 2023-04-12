@@ -142,4 +142,22 @@ export default function ingestar(empresa:Empresa){
         let produto_lista = new Produto(produto.produto, produto.preco, produto.genero)
         empresa.getProdutos.push(produto_lista)
     })
+
+    let clientes = empresa.getClientes
+
+    clientes.forEach((cliente) =>{
+        let qtdProdutos = Math.ceil(Math.random()*10);
+        for(let cont=0; cont <= qtdProdutos; cont++){
+            let indexProduto = Math.floor(Math.random()*10);
+            cliente.getProdutosConsumidos.push(empresa.getProdutos[indexProduto])
+        }
+    })
+
+    clientes.forEach((cliente) =>{
+        let qtdServicos = Math.ceil(Math.random()*10);
+        for(let cont=0; cont <= qtdServicos; cont++){
+            let indexServico = Math.floor(Math.random()*10);
+            cliente.getServicosConsumidos.push(empresa.getServicos[indexServico])
+        }
+    })
 }

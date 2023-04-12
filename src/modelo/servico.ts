@@ -1,5 +1,5 @@
 export default class Servico {
-    public nome!: string
+    private nome!: string
     private valor!: number
     private genero!: string
 
@@ -7,6 +7,10 @@ export default class Servico {
         this.nome = nome;
         this.valor = valor;
         this.genero = genero;
+    }
+
+    public get getNome(): string {
+        return this.nome
     }
 
     public get getValor(): number {

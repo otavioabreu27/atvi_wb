@@ -1,4 +1,5 @@
 import Cliente from "../modelo/cliente";
+import Produto from "../modelo/produto";
 import Listagem from "./listagem";
 
 export default class ListagemClientes extends Listagem {
@@ -17,6 +18,14 @@ export default class ListagemClientes extends Listagem {
             console.log(`Telefones:`);
             cliente.getTelefones.forEach(telefone => {
                 console.log(`  - (${telefone.getDdd})${telefone.getNumero}`)
+            })
+            console.log(`Produtos Consumidos:`);
+            cliente.getProdutosConsumidos.forEach((produto) => {
+                console.log(`  - ${produto.getNome}`)
+            })
+            console.log(`Serviços Consumidos:`);
+            cliente.getServicosConsumidos.forEach((servico) => {
+                console.log(`  - ${servico.getNome}`)
             })
             console.log(`--------------------------------------`);
         });

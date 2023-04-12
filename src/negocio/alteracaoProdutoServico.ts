@@ -24,7 +24,7 @@ export default class AlteracaoProdutoServico extends Alteracao{
             index = Number(this.entrada.receberTexto("Escolha um numero valido: "))
         }
         let produto_escolhido = this.produtos[index];
-        console.log(`Nome do produto atual: ${produto_escolhido.nome}`);
+        console.log(`Nome do produto atual: ${produto_escolhido.getNome}`);
         let novo_nome = this.entrada.receberTexto('Novo nome: ');
         console.log(`Valor atual: R$${produto_escolhido.getValor}`);
         let novo_valor = this.entrada.receberNumero('Novo valor: ');
