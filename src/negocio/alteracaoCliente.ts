@@ -4,6 +4,7 @@ import Alteracao from "../negocio/alteracao";
 import ListagemClientes from "./listagemClientes";
 import UtilidadesTelefone from "./utilidadesTelefone";
 import UtilidadesCpf from "./utilidadesCpf";
+import UtilidadesRG from "./utilidadesRg";
 
 export default class AlteracaoCliente extends Alteracao {
     private clientes: Array<Cliente>;
@@ -11,6 +12,7 @@ export default class AlteracaoCliente extends Alteracao {
     private listagem: ListagemClientes;
     private utilidades_telefone: UtilidadesTelefone
     private utilidades_cpf: UtilidadesCpf
+    private utilidades_rg: UtilidadesRG
     constructor (clientes: Array<Cliente>) {
         super();
         this.clientes = clientes
@@ -18,6 +20,7 @@ export default class AlteracaoCliente extends Alteracao {
         this.listagem = new ListagemClientes(this.clientes);
         this.utilidades_telefone = new UtilidadesTelefone;
         this.utilidades_cpf = new UtilidadesCpf;
+        this.utilidades_rg = new UtilidadesRG;
     }
     public alterar(): void {
         console.log('\nInício da alteracao do cliente');
@@ -45,10 +48,12 @@ export default class AlteracaoCliente extends Alteracao {
             console.log(`  - (${telefone.getDdd})${telefone.getNumero}`)
         })
         console.log('Novos Telefones: ')
-        let numeros_telefone = this.utilidades_telefone.cadastrarNumeros()
+        let numeros_telefone = this.utilidades_telefone.cadastrarNumeros();
         let novo_cpf = this.utilidades_cpf.criaCpf(novo_valor, nova_data);
         let novo_telefone = this.utilidades_telefone.criaTelefones(numeros_telefone)
-        let cliente_alterado = new Cliente(novo_nome, novo_nome_social, novo_cpf, novo_genero, novo_telefone);
+        console.log('Novos RGS: ')
+        let novos_rgs = this.utilidades_rg.cadastrarRgs();
+        let cliente_alterado = new Cliente(novo_nome, novo_nome_social, novo_cpf, novo_genero, novos_rgs, novo_telefone);
         this.clientes[index] = cliente_alterado;
         console.log(`Cliente ${index} alterado!`)
     }

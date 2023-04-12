@@ -2,18 +2,21 @@ import Cliente from "../modelo/cliente";
 import Cadastro from "./cadastro";
 import UtilidadesTelefone from "./utilidadesTelefone";
 import UtilidadesCpf from "./utilidadesCpf";
+import UtilidadesRG from "./utilidadesRg";
 import Entrada from "../io/entrada";
 
 export default class CadastroCliente extends Cadastro {
     private clientes: Array<Cliente>
     private utilidades_telefone: UtilidadesTelefone
     private utilidades_cpf: UtilidadesCpf
+    private utilidades_rg: UtilidadesRG
     private entrada: Entrada;
     constructor(clientes: Array<Cliente>) {
         super();
         this.clientes = clientes
         this.utilidades_telefone = new UtilidadesTelefone;
         this.utilidades_cpf = new UtilidadesCpf;
+        this.utilidades_rg = new UtilidadesRG;
         this.entrada = new Entrada();
     }
     public cadastrar(): void {
@@ -25,8 +28,9 @@ export default class CadastroCliente extends Cadastro {
         let genero = this.prompt_genero();
         let numeros_telefone = this.utilidades_telefone.cadastrarNumeros()
         let cpf = this.utilidades_cpf.criaCpf(valor, data);
+        let rgs = this.utilidades_rg.cadastrarRgs();
         let telefone = this.utilidades_telefone.criaTelefones(numeros_telefone)
-        let cliente = new Cliente(nome, nomeSocial, cpf, genero, telefone);
+        let cliente = new Cliente(nome, nomeSocial, cpf, genero, rgs, telefone);
         this.clientes.push(cliente)
         console.log(`\nCadastro concluído :)\n`);
     }
