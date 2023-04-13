@@ -9,6 +9,7 @@ import ExclusaoProduto from "../negocio/exclusaoProdutoServico";
 import CadastroProdutoServico from "../negocio/cadastroProdutoServico";
 import AlteracaoProdutoServico from "../negocio/alteracaoProdutoServico";
 import ingestar from "./ingesta";
+import ListagemProdutosServicos from "../negocio/listagemProdutosServicos";
 
 let empresa = new Empresa()
 ingestar(empresa)
@@ -55,62 +56,58 @@ while (execucao) {
                     break;
             }
             break;
-            case 2:
-                console.log('-- Painel Produtos e Servicos -- ');
-                console.log(`1 - Cadastrar produtos/serviços`);
-                console.log('2 - Listar produtos/serviços');
-                console.log('3 - Alterar produto/serviço');
-                console.log('4 - Excluir produto/serviço');
-                console.log('0 - Voltar ao menu');
-                let opcao_painel_produtos = entrada.receberNumero(`Por favor, escolha uma opção: `)
-                switch(opcao_painel_produtos){
-                    case 1:
-                        let cadastro_produto = new CadastroProdutoServico(empresa.getProdutos, empresa.getServicos)
-                        cadastro_produto.cadastrar()
-                        break;
-                    case 2:
-                        let listagem_produto = new ListagemProdutos(empresa.getProdutos, empresa.getServicos)
-                        listagem_produto.listar()
-                        break;
-                    case 3:
-                        let alterar_produto = new AlteracaoProdutoServico(empresa.getProdutos, empresa.getServicos)
-                        alterar_produto.alterar()
-                        break;
-                    case 4:
-                        let excluir_produto = new ExclusaoProduto(empresa.getProdutos, empresa.getServicos)
-                        excluir_produto.excluir()
-                        break;
-                    case 0:
-                        break;
-                }
-                break;
-            case 3:
-                console.log('-- Painel de Funcionalidades --')
-                console.log('1 - Listagem dos 10 clientes que mais consumiram (QTD)')
-                console.log('2 - Listagem dos clientes por genero')
-                console.log('0 - Voltar ao menu');
-                let opcao_painel_funcionalidades = entrada.receberNumero(`Por favor, escolha uma opção: `)
-                switch(opcao_painel_funcionalidades){
-                    case 1:
-                        let ps = entrada.receberTexto("Deseja listar de produtos ou servicos[p/s]?: ")
-                        while (ps != "p" && ps != "s"){
-                            ps = entrada.receberTexto("Digite um valor valido: ")
-                        }
-                        let listar_cliente_qtd = new ListagemClientes(empresa.getClientes)
-                        listar_cliente_qtd.listar_cliente_qtd(ps)
-                        break;
-                    case 2:
-                        let mf = entrada.receberTexto("Deseja listar os clientes de qual genero[m/f]?: ")
-                        while (mf != "m" && mf != "f"){
-                            mf = entrada.receberTexto("Digite um valor valido: ")
-                        }
-                        let listar_cliente_gen = new ListagemClientes(empresa.getClientes)
-                        listar_cliente_gen.listar_cliente_gen(mf)
-                        break;
-                    case 0:
-                        break;
-                }
-                break;
+        case 2:
+            console.log('-- Painel Produtos e Servicos -- ');
+            console.log(`1 - Cadastrar produtos/serviços`);
+            console.log('2 - Listar produtos/serviços');
+            console.log('3 - Alterar produto/serviço');
+            console.log('4 - Excluir produto/serviço');
+            console.log('0 - Voltar ao menu');
+            let opcao_painel_produtos = entrada.receberNumero(`Por favor, escolha uma opção: `)
+            switch(opcao_painel_produtos){
+                case 1:
+                    let cadastro_produto = new CadastroProdutoServico(empresa.getProdutos, empresa.getServicos)
+                    cadastro_produto.cadastrar()
+                    break;
+                case 2:
+                    let listagem_produto = new ListagemProdutos(empresa.getProdutos, empresa.getServicos)
+                    listagem_produto.listar()
+                    break;
+                case 3:
+                    let alterar_produto = new AlteracaoProdutoServico(empresa.getProdutos, empresa.getServicos)
+                    alterar_produto.alterar()
+                    break;
+                case 4:
+                    let excluir_produto = new ExclusaoProduto(empresa.getProdutos, empresa.getServicos)
+                    excluir_produto.excluir()
+                    break;
+                case 0:
+                    break;
+            }
+            break;
+        case 3:
+            console.log('-- Painel de Funcionalidades --')
+            console.log('1 - Listagem dos 10 clientes que mais consumiram (QTD)')
+            console.log('2 - Listagem dos clientes por genero')
+            console.log('3 - Listagem geral dos produtos ou serviços mais consumidos')
+            console.log('0 - Voltar ao menu');
+            let opcao_painel_funcionalidades = entrada.receberNumero(`Por favor, escolha uma opção: `)
+            switch(opcao_painel_funcionalidades){
+                case 1:
+                    let listar_cliente_qtd = new ListagemClientes(empresa.getClientes)
+                    listar_cliente_qtd.listar_cliente_qtd()
+                    break;
+                case 2:
+                    let listar_cliente_gen = new ListagemClientes(empresa.getClientes)
+                    listar_cliente_gen.listar_cliente_gen()
+                    break;
+                case 3:
+                    let listar_produtos_servicos_mais_vendidos = new ListagemProdutosServicos(empresa.getProdutos, empresa.getServicos);
+                    listar_produtos_servicos_mais_vendidos.listar_produtos_servicos_mais_vendidos(empresa.getClientes)
+                    break;
+                case 0:
+                    break;
+            }
             break;
         case 0:
             execucao = false

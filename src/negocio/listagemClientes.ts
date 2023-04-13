@@ -1,10 +1,13 @@
+import Entrada from "../io/entrada";
 import Cliente from "../modelo/cliente";
 import Listagem from "./listagem";
 
 export default class ListagemClientes extends Listagem {
+    private entrada: Entrada;
     private clientes: Array<Cliente>
     constructor(clientes: Array<Cliente>) {
         super()
+        this.entrada = new Entrada;
         this.clientes = clientes
     }
 
@@ -63,7 +66,8 @@ export default class ListagemClientes extends Listagem {
     }
 
 
-    public listar_cliente_qtd(tipo: string): void{
+    public listar_cliente_qtd(): void{
+        let tipo = this.prompt_ps();
         if (tipo == "p"){
             interface qtd_index{
                 qtd: Number,
@@ -82,7 +86,9 @@ export default class ListagemClientes extends Listagem {
                 index++;
             });
 
+            // Ordena o array com as qtd e index baseado em maior qtd
             qtd_produtos.sort((a, b) => Number(b.qtd) - Number(a.qtd));
+            
             console.log('-- 10 Clientes que mais consumiram produtos --');
             for (let cont = 0; cont <= 9 ; cont++){
                 let qtd_index = qtd_produtos[cont]
@@ -106,8 +112,10 @@ export default class ListagemClientes extends Listagem {
                 )
                 index++;
             });
-
+            
+            // Ordena o array com as qtd e index baseado em maior qtd
             qtd_servicos.sort((a, b) => Number(b.qtd) - Number(a.qtd));
+
             console.log('-- 10 Clientes que mais consumiram servicos --');
             for (let cont = 0; cont <= 9 ; cont++){
                 let qtd_index = qtd_servicos[cont]
@@ -118,7 +126,8 @@ export default class ListagemClientes extends Listagem {
     }
 
 
-    public listar_cliente_gen(gen: string): void{
+    public listar_cliente_gen(): void{
+        let gen = this.prompt_mf();
         if (gen == "m"){
             console.log('-- Clientes do genero masculino --');
             this.clientes.forEach((cliente)=>{
@@ -134,5 +143,21 @@ export default class ListagemClientes extends Listagem {
                 }
             });
         }
+    }
+
+    private prompt_ps(): string{
+        let ps = this.entrada.receberTexto("Deseja listar de produtos ou servicos[p/s]?: ")
+        while (ps != "p" && ps != "s"){
+            ps = this.entrada.receberTexto("Digite um valor valido: ")
+        }
+        return ps
+    }
+
+    private prompt_mf(): string{
+        let mf = this.entrada.receberTexto("Deseja listar os clientes de qual genero[m/f]?: ")
+        while (mf != "m" && mf != "f"){
+            mf = this.entrada.receberTexto("Digite um valor valido: ")
+        }
+        return mf
     }
 }
