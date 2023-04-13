@@ -12,23 +12,69 @@ var utilCpf = new UtilidadesCpf;
 var utilRg = new UtilidadesRG;
 
 var nome = [
-    'Otavio',
-    'Alberto',
-    'Eliano',
-    'Esmilinguido',
-    'Rodinaldo',
-    'João',
-    'Tadeu'
+    "Ana",
+    "Bianca",
+    "Carlos",
+    "Daniela",
+    "Eduardo",
+    "Fernanda",
+    "Gabriel",
+    "Hugo",
+    "Isabel",
+    "João",
+    "Karina",
+    "Lucas",
+    "Mariana",
+    "Natália",
+    "Otávio",
+    "Patrícia",
+    "Quintino",
+    "Renata",
+    "Simone",
+    "Thiago",
+    "Ulisses",
+    "Valentina",
+    "William",
+    "Xavier",
+    "Yasmin",
+    "Zélio",
+    "Amanda",
+    "Bruno",
+    "Cíntia",
+    "Davi"
 ]
 
 var nomeSocial = [
-    'Tata',
-    'Mimi',
-    'Lala',
-    'Mama',
-    'Lolo',
-    'Juju',
-    'Papa'
+    "Elisa",
+    "Fabiana",
+    "Gustavo",
+    "Helena",
+    "Igor",
+    "Jéssica",
+    "Kátia",
+    "Larissa",
+    "Márcio",
+    "Nádia",
+    "Olívia",
+    "Pedro",
+    "Rafael",
+    "Samantha",
+    "Talita",
+    "Ulisses",
+    "Viviane",
+    "Wagner",
+    "Xuxa",
+    "Yuri",
+    "Zilda",
+    "André",
+    "Bárbara",
+    "Carmen",
+    "Diego",
+    "Emanuela",
+    "Fábio",
+    "Giovana",
+    "Heloísa",
+    "Iara"
 ]
 
 var servicos = [
@@ -63,23 +109,35 @@ var genero = [
 ]
 
 var valoresCpf = [
-    '000.000.000-00',
-    '111.111.111-11',
-    '123.123.123-11',
-    '333.333.111-20',
-    '122.123.235-23',
-    '444.444.444-00',
-    '453.785.123-00'
+    '945.364.181-97', '304.253.933-25',
+    '702.221.173-34', '802.085.618-94',
+    '751.220.092-61', '791.978.671-26',
+    '849.267.860-76', '325.094.958-92',
+    '707.735.711-84', '315.561.977-38',
+    '572.107.150-67', '331.018.395-74',
+    '416.521.210-10', '359.643.902-36',
+    '371.732.380-98', '834.986.791-65',
+    '002.886.442-54', '810.467.098-87',
+    '059.663.837-66', '776.794.662-68',
+    '774.062.480-77', '989.197.111-12',
+    '649.001.842-93', '019.624.884-70',
+    '565.424.912-42', '224.031.260-10',
+    '126.245.087-45', '300.316.818-89',
+    '513.681.151-12', '532.449.850-26'     
 ]
 
 var dataCpf = [
-    '27/10/2002',
-    '29/09/2002',
-    '21/02/1990',
-    '12/03/1500',
-    '06/10/1240',
-    '03/12/2023',
-    '08/04/2010'
+    '15/10/1997', '06/04/1910', '13/10/1910',
+    '22/09/1952', '27/05/2010', '13/05/2002',
+    '19/01/1958', '07/07/1996', '01/07/2011',
+    '21/12/1921', '01/12/2019', '06/02/1906',
+    '19/07/1925', '22/04/1901', '02/02/2003',
+    '21/11/1999', '14/11/1986', '23/07/1968',
+    '07/01/1984', '06/02/1937', '22/03/1988',
+    '05/11/1934', '28/02/1930', '08/10/1919',
+    '22/12/1997', '20/11/2011', '24/06/2006',
+    '24/03/2011', '14/08/1916', '27/10/1980'
+
 ]
 
 var numerosTelefone = [
@@ -93,27 +151,30 @@ var numerosTelefone = [
 ]
 
 var numerosRg = [
-    '53.120.000-1',
-    '24.123.123-1',
-    '12.009.000-8',
-    '23.122.889-2',
-    '08.456.223-4',
-    '45.222.790-0',
-    '11.234.666-4'
+    '64.312.379-25', '70.517.794-41', '87.364.861-68', 
+    '45.210.218-06', '23.966.489-48', '28.099.628-60', 
+    '17.634.448-16', '17.456.527-99', '49.433.526-36', 
+    '47.742.553-66', '42.787.545-43', '26.866.912-90', 
+    '52.922.370-46', '50.935.022-81', '48.864.102-68', 
+    '51.859.634-98', '62.510.274-21', '86.695.144-01', 
+    '74.959.786-39', '79.655.131-41', '41.094.467-53', 
+    '84.534.743-39', '34.428.124-46', '39.981.808-98', 
+    '94.927.381-10', '10.875.821-49', '28.040.364-00', 
+    '55.294.858-58', '10.016.863-08', '20.474.743-03'
 ]
 
 export default function ingestar(empresa:Empresa){
     console.log("Gerando Clientes")
     console.log("-----------------------------------")
-    for(let cont = 0; cont <= 10; cont++){
-        let indexNome = Math.floor(Math.random()*7);
-        let indexNomeSocial = Math.floor(Math.random()*7);
+    for(let cont = 0; cont <= 30; cont++){
+        let indexNome = Math.floor(Math.random()*30);
+        let indexNomeSocial = Math.floor(Math.random()*30);
         let indexGenero = Math.floor(Math.random()*2);
-        let indexValorCpf = Math.floor(Math.random()*7);
-        let indexDataCpf = Math.floor(Math.random()*7);
+        let indexValorCpf = Math.floor(Math.random()*30);
+        let indexDataCpf = Math.floor(Math.random()*30);
         let indexNumeroTelefone = Math.floor(Math.random()*7);
-        let indexNumeroRg = Math.floor(Math.random()*7);
-        let indexDataRg = Math.floor(Math.random()*7);
+        let indexNumeroRg = Math.floor(Math.random()*30);
+        let indexDataRg = Math.floor(Math.random()*30);
         let cpf = utilCpf.criaCpf(valoresCpf[indexValorCpf], dataCpf[indexDataCpf]);
         let rgs: Array<RG> = [];
         let rg: RG = utilRg.criaRG(numerosRg[indexNumeroRg], dataCpf[indexDataRg]);

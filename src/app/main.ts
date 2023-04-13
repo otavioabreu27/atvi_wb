@@ -19,6 +19,7 @@ while (execucao) {
     console.log(`Opções:`);
     console.log(`1 - Painel Cliente`);
     console.log(`2 - Painel Produtos e Servicos`);
+    console.log(`3 - Painel de Funcionalidades`)
     console.log(`0 - Sair`);
 
     let entrada = new Entrada()
@@ -83,6 +84,34 @@ while (execucao) {
                         break;
                 }
                 break;
+            case 3:
+                console.log('-- Painel de Funcionalidades --')
+                console.log('1 - Listagem dos 10 clientes que mais consumiram (QTD)')
+                console.log('2 - Listagem dos clientes por genero')
+                console.log('0 - Voltar ao menu');
+                let opcao_painel_funcionalidades = entrada.receberNumero(`Por favor, escolha uma opção: `)
+                switch(opcao_painel_funcionalidades){
+                    case 1:
+                        let ps = entrada.receberTexto("Deseja listar de produtos ou servicos[p/s]?: ")
+                        while (ps != "p" && ps != "s"){
+                            ps = entrada.receberTexto("Digite um valor valido: ")
+                        }
+                        let listar_cliente_qtd = new ListagemClientes(empresa.getClientes)
+                        listar_cliente_qtd.listar_cliente_qtd(ps)
+                        break;
+                    case 2:
+                        let mf = entrada.receberTexto("Deseja listar os clientes de qual genero[m/f]?: ")
+                        while (mf != "m" && mf != "f"){
+                            mf = entrada.receberTexto("Digite um valor valido: ")
+                        }
+                        let listar_cliente_gen = new ListagemClientes(empresa.getClientes)
+                        listar_cliente_gen.listar_cliente_gen(mf)
+                        break;
+                    case 0:
+                        break;
+                }
+                break;
+            break;
         case 0:
             execucao = false
             console.log(`Até mais`)

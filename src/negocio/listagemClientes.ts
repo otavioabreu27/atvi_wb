@@ -1,5 +1,4 @@
 import Cliente from "../modelo/cliente";
-import Produto from "../modelo/produto";
 import Listagem from "./listagem";
 
 export default class ListagemClientes extends Listagem {
@@ -8,6 +7,8 @@ export default class ListagemClientes extends Listagem {
         super()
         this.clientes = clientes
     }
+
+
     public listar(): void {
         console.log(`\nLista de todos os clientes:`);
         this.clientes.forEach(cliente => {
@@ -31,6 +32,8 @@ export default class ListagemClientes extends Listagem {
         });
         console.log(`\n`);
     }
+
+
     public listar_index(): void{
         let index: number = 0;
         this.clientes.forEach(cliente => {
@@ -43,6 +46,8 @@ export default class ListagemClientes extends Listagem {
             index++;
         });
     }
+
+
     public listar_cliente(index: number): void{
         let cliente = this.clientes[index]
         console.log('Cliente selecionado:')
@@ -55,5 +60,79 @@ export default class ListagemClientes extends Listagem {
         })
         console.log(`  Genero: ${cliente.getGenero}`);
         console.log(`--------------------------------------`);
+    }
+
+
+    public listar_cliente_qtd(tipo: string): void{
+        if (tipo == "p"){
+            interface qtd_index{
+                qtd: Number,
+                index: Number
+            }
+
+            let qtd_produtos: Array<qtd_index> = [];
+            let index = 0;
+            this.clientes.forEach((cliente)=>{
+                qtd_produtos.push(
+                    {
+                        qtd: Number(cliente.getProdutosConsumidos.length),
+                        index: Number(index)
+                    }
+                )
+                index++;
+            });
+
+            qtd_produtos.sort((a, b) => Number(b.qtd) - Number(a.qtd));
+            console.log('-- 10 Clientes que mais consumiram produtos --');
+            for (let cont = 0; cont <= 9 ; cont++){
+                let qtd_index = qtd_produtos[cont]
+                console.log(`- ${this.clientes[Number(qtd_index.index)].nome}:`)
+                console.log(`  Produtos: ${qtd_index.qtd}`)
+            }
+        } else {
+            interface qtd_index{
+                qtd: Number,
+                index: Number
+            }
+
+            let qtd_servicos: Array<qtd_index> = [];
+            let index = 0;
+            this.clientes.forEach((cliente)=>{
+                qtd_servicos.push(
+                    {
+                        qtd: Number(cliente.getServicosConsumidos.length),
+                        index: Number(index)
+                    }
+                )
+                index++;
+            });
+
+            qtd_servicos.sort((a, b) => Number(b.qtd) - Number(a.qtd));
+            console.log('-- 10 Clientes que mais consumiram servicos --');
+            for (let cont = 0; cont <= 9 ; cont++){
+                let qtd_index = qtd_servicos[cont]
+                console.log(`- ${this.clientes[Number(qtd_index.index)].nome}:`)
+                console.log(`  Servicos: ${qtd_index.qtd}`)
+            }
+        }
+    }
+
+
+    public listar_cliente_gen(gen: string): void{
+        if (gen == "m"){
+            console.log('-- Clientes do genero masculino --');
+            this.clientes.forEach((cliente)=>{
+                if (cliente.getGenero == "m"){
+                    console.log(`- ${cliente.nome}[${cliente.getCpf.getValor}]`)
+                }
+            });
+        } else {
+            console.log('-- Clientes do genero feminino --');
+            this.clientes.forEach((cliente)=>{
+                if (cliente.getGenero == "f"){
+                    console.log(`- ${cliente.nome}[${cliente.getCpf.getValor}]`)
+                }
+            });
+        }
     }
 }
