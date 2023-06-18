@@ -1,5 +1,6 @@
 import Entrada from "../io/entrada";
 import Cliente from "../modelo/cliente";
+import Produto from "../modelo/produto";
 import Listagem from "./listagem";
 
 export default class ListagemClientes extends Listagem {
@@ -142,6 +143,57 @@ export default class ListagemClientes extends Listagem {
                     console.log(`- ${cliente.nome}[${cliente.getCpf.getValor}]`)
                 }
             });
+        }
+    }
+
+    public listar_clientes_menos_consumiram() {
+        const ps = this.prompt_ps()
+        const cliente_qtd:{[key: string]: number} = {};
+        if (ps == "s"){
+            console.log('Listando 10 clientes que menos consumiram serviços:')
+            this.clientes.forEach((cliente)=>{
+                cliente_qtd[cliente.nome] = cliente.getServicosConsumidos.length;
+            });
+
+            const clientes_ordenados = Object.entries(cliente_qtd).sort(([,a], [,b]) => a - b);
+            for (let cont=0; cont<10; cont++){
+                console.log(`- ${clientes_ordenados[cont][0]}: ${clientes_ordenados[cont][1]}`);
+            }
+        } else {
+            console.log('Listando 10 clientes que menos consumiram produtos:')
+            this.clientes.forEach((cliente)=>{
+                cliente_qtd[cliente.nome] = cliente.getProdutosConsumidos.length;
+            })
+
+            const clientes_ordenados = Object.entries(cliente_qtd).sort(([,a], [,b]) => a - b);
+            for (let cont=0; cont<10; cont++){
+                console.log(`- ${clientes_ordenados[cont][0]}: ${clientes_ordenados[cont][1]}`);
+            }
+        } 
+    }
+
+    public listar_clientes_mais_consumiram_valor() {
+        const cliente_valor:{[key: string]: number} = {};
+        let valor_serv = 0;
+        let valor_produto = 0;
+        this.clientes.forEach((cliente)=>{
+            valor_serv = 0;
+            valor_produto = 0;
+
+            cliente.getProdutosConsumidos.forEach((produto)=>{
+                valor_produto+=produto.getValor;
+            });
+
+            cliente.getServicosConsumidos.forEach((servico)=>{
+                valor_serv+=servico.getValor
+            })
+
+            cliente_valor[cliente.nome] = valor_produto + valor_serv; 
+        });
+
+        const clientes_ordenados = Object.entries(cliente_valor).sort(([,a], [,b]) => b - a);
+        for (let cont=0; cont<5; cont++){
+            console.log(`- ${clientes_ordenados[cont][0]}: R$${clientes_ordenados[cont][1]}`);
         }
     }
 

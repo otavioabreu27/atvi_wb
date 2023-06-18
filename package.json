@@ -11,6 +11,8 @@
   "dependencies": {
     "@types/node": "^16.7.10",
     "@types/prompt-sync": "^4.1.1",
+    "node-type": "^1.1.1",
+    "nodemon": "^2.0.22",
     "prompt-sync": "^4.2.0"
   },
   "devDependencies": {

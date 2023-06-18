@@ -90,6 +90,9 @@ while (execucao) {
             console.log('1 - Listagem dos 10 clientes que mais consumiram (QTD)')
             console.log('2 - Listagem dos clientes por genero')
             console.log('3 - Listagem geral dos produtos ou serviços mais consumidos')
+            console.log('4 - Listagem de produtos ou servicos mais consumidos por genero')
+            console.log('5 - Listagem de 10 clientes que menos consumiram produtos ou serviços')
+            console.log('6 - Listagem de clientes que mais consumiram em valor')
             console.log('0 - Voltar ao menu');
             let opcao_painel_funcionalidades = entrada.receberNumero(`Por favor, escolha uma opção: `)
             switch(opcao_painel_funcionalidades){
@@ -105,8 +108,20 @@ while (execucao) {
                     let listar_produtos_servicos_mais_vendidos = new ListagemProdutosServicos(empresa.getProdutos, empresa.getServicos);
                     listar_produtos_servicos_mais_vendidos.listar_produtos_servicos_mais_vendidos(empresa.getClientes)
                     break;
-                case 0:
+                case 4:
+                    let listar_produtos_servicos_mais_vendidos_genero = new ListagemProdutosServicos(empresa.getProdutos, empresa.getServicos);
+                    listar_produtos_servicos_mais_vendidos_genero.listar_produto_servico_mais_vendido_genero(empresa.getClientes)
                     break;
+                case 5:
+                    let listar_clientes_menos_consumiram = new ListagemClientes(empresa.getClientes);
+                    listar_clientes_menos_consumiram.listar_clientes_menos_consumiram()
+                    break;
+                case 6:
+                    let listar_clientes_mais_consumiram_valor = new ListagemClientes(empresa.getClientes);
+                    listar_clientes_mais_consumiram_valor.listar_clientes_mais_consumiram_valor()
+                    break;
+                case 0:
+                break;
             }
             break;
         case 0:
